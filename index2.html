@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {    
+             
+            background-color: rgba(177, 192, 163, 0.651);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;      
+        }
+
+        fieldset {
+            background-color: rgba(133, 233, 113, 0.582);
+            border: 1px solid rgb(94, 255, 1);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+     
+     
+
+        label {
+            display: block;
+            background-color: aquamarine;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        
+
+        svg {
+            width: 100px; /* Define a largura do SVG */
+            height: auto; /* Mantém a proporção original do SVG */
+            fill: #000; /* Cor do SVG */
+        }
+
+        p {
+            text-align:center;
+        }
+        #image-preview {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+}
+
+.container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body onload="displayName(); displayImage()">
+    <div class="header">
+        <h3>Formulário de Cadastro</h3>
+    </div>
+
+    <fieldset >
+        <legend>Cadastro do Cliente</legend>
+
+
+        
+       
+      <!-- Exibição da imagem -->
+       
+        <!-- Exibição da imagem -->
+        <div>
+            <img id="image-preview" src="" alt="Imagem enviada">
+            <p>Nome da imagem: <span id="image-name"></span></p>
+        </div>
+    <!--p>Nome do arquivo: <span id="image-name"></span></p-->
+
+
+
+        <p>Nome: <span id="nome"></span></p>
+    </fieldset>
+
+    <p><strong>Seja bem-vindo</strong></p>
+    <!-- Figura copiada do site "https://icons.getbootstrap.com/icons/emoji-grin/" -->
+    <div class="container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5"/>
+        </svg>
+    </div>
+    <script>
+        // Função para exibir o nome na página
+        function displayName() {
+            const nome = getQueryParam('nome');
+            if (nome) {
+                document.getElementById('nome').textContent = nome;
+            } else {
+                document.getElementById('nome').textContent = 'Nome não fornecido.';
+            }
+        }
+  // Função para obter parâmetros da URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        
+
+        // Função para exibir a imagem
+        function displayImage() {
+            const imageName = getQueryParam('image'); // Obtém o nome da imagem dos parâmetros da URL
+            if (imageName) {
+                const imageUrl = 'uploads/' + imageName; // Constrói o caminho para a imagem
+                document.getElementById('image-preview').src = imageUrl; // Define o src da imagem
+                document.getElementById('image-name').textContent = imageName; // Atualiza o nome da imagem na página
+            } else {
+                document.getElementById('image-preview').alt = 'Nenhuma imagem disponível'; // Mensagem alternativa se não houver imagem
+                document.getElementById('image-name').textContent = 'Nenhuma imagem disponível.'; // Mensagem de texto se não houver imagem
+            }
+        }
+
+        // Função para visualizar a imagem carregada pelo usuário
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById('image-preview').src = reader.result;
+                document.getElementById('image-name').textContent = file.name;
+            };
+            reader.readAsDataURL(file); // Lê o arquivo como URL de dados
+        }
+
+        // Chama a função displayImage quando o DOM está completamente carregado
+        document.addEventListener('DOMContentLoaded', displayImage);
+    </script>
+</body>
+</html>

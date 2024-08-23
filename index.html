@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="estagio.css">
+
+
+</head>
+<body onload="setUniqueId()">
+    
+<h1>Cadastro do Cliente</h1>
+    
+<div class="sol">
+    <input type="checkbox" class="checkbox" id="chk"/>
+
+    <label class="label" for="chk">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+        <div class="ball"></div>
+    </label>
+    </div>
+
+
+
+<form id="upload-form" method="(post)"  action="estagio2.html" enctype="multipart/form-data">
+
+ <!-- Campo oculto para a chave primária >
+    <input type="hidden" name="id_cliente" id="id_cliente">
+      Exemplo de valor fixo; no backend, você pode gerar ou obter um valor único -->
+
+    <!--aqui criamos a formatação onde vai o nome e como solicitado ate 100 caracters -->
+
+    <input type="hidden" name="id_cliente" id="id_cliente">
+<label>Nome:</label><br>
+<input type="text" id="nome" name="nome" placeholder="Digite seu nome:" size="25" maxlength="100" required>
+<br><br>
+
+<!--aqui criamos a formatação onde sera colocado o dado de cnpj com a restrição de 14 caracters-->
+<label>CNPJ:</label><br>
+<input type="text" name="cnpj" placeholder="Digite seu cnpj:" size="25" maxlength="14" required>
+
+<select name="itens" >
+
+    <option value=""></option>
+    <option value="c">comercio</option>
+    <option value="s">serviços</option>
+    <option value="i">industrias</option>
+    
+</select>
+<br><br>
+
+
+
+    <!--aqui vamos formatar os dados de endereço -->
+    <label for="cep">CEP:</label><br>
+    <input type="text" id="cep" name="cep"  maxlength="8" size="25" required placeholder="12345678"  onblur="pesquisacep(this.value);" />
+    <br><br>
+          
+<label>Endereço:</label><br>  
+<input type="text" id="rua" name="endereço" placeholder="Rua:" maxlength="255" size="25"  required>
+<br><br>
+
+<label>Bairro:</label><br>
+<input type="text" id="bairro" name="bairro" maxlength="255" placeholder="Digite seu bairro:" size="25" required>
+<br><br>
+ 
+<label>Cidade:</label><br>
+<input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade:" size="25" required>
+<br><br>
+
+<label>UF:</label><br>
+<input type="text" id="uf" name="uf" placeholder="Estado" size="3" maxlength="3" required>
+   <br><br>
+
+<label for="ibge">IBGE:</label><br>
+<input type="text" id="ibge" name="ibge" maxlength="20" 
+placeholder="dados ibge" size="25" required>
+<br><br>
+
+        <!--aqui colocamos a formatação para a escolha de uma imagem requisito obrigatório tipo png-->
+
+        <label id="upload-form" action="upload_handler.php" method="(post)" enctype="multipart/form-data">
+            <label for="image-upload">Escolha uma imagem (PNG):</label><br>
+            <input type="file" id="image-upload" name="image" accept="image/*" required>
+        <br><br>
+        
+      
+<br>
+
+        <!--link anexado para outra pagina ao enviar-->
+<input type="submit"  value="Enviar" >
+</form>
+  
+            <!--dados acesso js para formatacão do modo dark-->
+<script src="estagio.js"></script>
+<script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous">
+ 
+
+</script>    
+</body>
+</html>
